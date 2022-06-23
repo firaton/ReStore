@@ -1,4 +1,5 @@
 import { ListItem, ListItemAvatar, Avatar, ListItemText, Button, Card, CardActions, CardContent, CardMedia, Typography, CardHeader } from "@mui/material";
+import { Link } from "react-router-dom";
 import { Product } from "../../app/models/product";
 
 interface Props {
@@ -36,7 +37,8 @@ export default function ProductCard({product}: Props){
         </CardContent>
         <CardActions>
           <Button size="small">Sepete Ekle</Button>
-          <Button size="small">Detay</Button>
+          {/**Backtick karakterini altgr ve virgül tuşuna basasrak yapıyoruz.  `/catalog/+product.id` ile aynı */}
+          <Button size="small" component={Link} to={`/catalog/${product.id}`}>Detay</Button>
         </CardActions>
       </Card>
 
