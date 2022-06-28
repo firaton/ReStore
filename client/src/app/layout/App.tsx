@@ -5,11 +5,14 @@ import Header from "./Header";
 import { Container } from "@mui/system";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "./NotFound";
+import NotFound from "../errors/NotFound";
 import AboutPage from "../../features/about/AboutPage";
 import HomePage from "../../features/home/HomePage";
 import ContactPage from "../../features/contact/ContactPage";
 import ProductDetails from "../../features/catalog/ProductDetails";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import ServerError from "../errors/ServerError";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,6 +30,7 @@ function App() {
 
   return (
     <ThemeProvider theme={tema}>
+      <ToastContainer position='bottom-right' hideProgressBar></ToastContainer>
       <CssBaseline></CssBaseline>
       {/* <NavBar></NavBar> */}
       <Header darkMode={darkMode} changeMode={handleClick}></Header>
@@ -37,6 +41,7 @@ function App() {
           <Route path="/catalog/:id" element={<ProductDetails />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/server-error" element={<ServerError />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           {/*bir parametre gönderilecekse route pathe iki nokta ile bildirmek gerekiyor. */}
           {/* <Route path="/saveproduct/:productId" element={<AddOrUpdateProduct />}></Route>         */}
